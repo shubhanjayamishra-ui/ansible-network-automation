@@ -1,0 +1,13 @@
+---
+- name: Get Cisco Device Facts
+  hosts: cisco_routers
+  gather_facts: no
+
+  tasks:
+    - name: Collect device facts
+      cisco.ios.ios_facts:
+        gather_subset: all
+
+    - name: Show hostname
+      debug:
+        msg: "Device hostname is {{ ansible_net_hostname }}"

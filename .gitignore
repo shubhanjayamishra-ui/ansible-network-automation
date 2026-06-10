@@ -1,0 +1,4 @@
+*.retry
+vault.yml
+*.log
+.DS_Store
