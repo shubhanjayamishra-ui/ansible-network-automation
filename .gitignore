@@ -2,3 +2,4 @@
 vault.yml
 *.log
 .DS_Store
+*.cfg

@@ -1,0 +1,14 @@
+---
+- name: Check Interface Status
+  hosts: cisco_routers
+  gather_facts: no
+
+  tasks:
+    - name: Get interface status
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+
+    - name: Show interface output
+      debug:
+        msg: "{{ ansible_net_hostname }} interfaces: {{ ansible_facts.net_output }}"

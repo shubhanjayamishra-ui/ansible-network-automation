@@ -1,0 +1,19 @@
+---
+- name: Backup Cisco Device Config
+  hosts: cisco_routers
+  gather_facts: no
+
+  tasks:
+    - name: Get running config
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+
+    - name: Save config to file
+      copy:
+        content: "{{ ansible_facts.net_output }}"
+        dest: "./backups/{{ inventory_hostname }}_backup.cfg"
+
+    - name: Confirm backup done
+      debug:
+        msg: "Config backup completed for {{ inventory_hostname }}"

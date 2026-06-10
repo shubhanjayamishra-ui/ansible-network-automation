@@ -1,0 +1,14 @@
+---
+- name: Check BGP Neighbors
+  hosts: cisco_routers
+  gather_facts: no
+
+  tasks:
+    - name: Get BGP neighbor status
+      cisco.ios.ios_command:
+        commands:
+          - show bgp summary
+
+    - name: Show BGP output
+      debug:
+        msg: "{{ ansible_net_hostname }} BGP output: {{ ansible_facts.net_output }}"
